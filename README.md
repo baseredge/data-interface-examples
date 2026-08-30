@@ -29,18 +29,18 @@ python -m pip install -r requirements.txt
 先做不联网自测：
 
 ```bash
-python admin/ai_control.py --help
-python websocket/d102_quickstart.py --mode ws --dry-run
-python websocket/d102_quickstart.py --mode http --dry-run
+python examples/automation/ai_control.py --help
+python examples/cli/d102_quickstart.py --mode ws --dry-run
+python examples/cli/d102_quickstart.py --mode http --dry-run
 ```
 
 服务已经启动并登录后，可以运行：
 
 ```bash
-python admin/ai_control.py status
-python admin/ai_control.py smoke
-python websocket/d102_quickstart.py --mode ws --listen 5
-python websocket/d102_quickstart.py --mode http
+python examples/automation/ai_control.py status
+python examples/automation/ai_control.py smoke
+python examples/cli/d102_quickstart.py --mode ws --listen 5
+python examples/cli/d102_quickstart.py --mode http
 ```
 
 `smoke`、数据查询和 WebSocket 示例会访问本机服务；没有本地服务时，先运行
@@ -50,16 +50,16 @@ python websocket/d102_quickstart.py --mode http
 
 | 目录 | 内容 | 默认依赖 |
 | --- | --- | --- |
-| `admin/` | 无界面管理、登录、启停和基础探活 | Python 标准库 |
-| `http/` | D1、D4、D6 用户侧数据工作台 | 标准库；D6 需要 `websocket-client` |
-| `websocket/` | D101、D102、D201、D202 实时数据示例 | `websocket-client` |
+| `examples/automation/` | 无界面、AI 控制、登录、启停和基础探活 | Python 标准库 |
+| `examples/gui/` | 所有 GUI 用户侧数据工作台 | 标准库；D6 需要 `websocket-client` |
+| `examples/cli/` | D102、D201、D202 命令行数据示例 | `websocket-client` |
 | `docs/` | 面向客户的运行说明 | 无 |
 
 ## 示例索引
 
 ### 管理和 AI 自动化
 
-`admin/ai_control.py` 支持以下命令：
+`examples/automation/ai_control.py` 支持以下命令：
 
 ```text
 status       查看管理端状态
@@ -79,9 +79,9 @@ smoke        执行管理端和 D102 探活
 export DI_PHONE='你的手机号'
 export DI_PASSWORD='你的密码'
 export DI_CARD_KEY='需要充值时再设置'
-python admin/ai_control.py login
-python admin/ai_control.py start --port 8080
-python admin/ai_control.py smoke
+python examples/automation/ai_control.py login
+python examples/automation/ai_control.py start --port 8080
+python examples/automation/ai_control.py smoke
 ```
 
 PowerShell 使用 `$env:DI_PHONE`、`$env:DI_PASSWORD` 和 `$env:DI_CARD_KEY` 设置
@@ -89,7 +89,7 @@ PowerShell 使用 `$env:DI_PHONE`、`$env:DI_PASSWORD` 和 `$env:DI_CARD_KEY` �
 
 ### D102
 
-`websocket/d102_quickstart.py` 只演示通过本机服务接入：
+`examples/cli/d102_quickstart.py` 只演示通过本机服务接入：
 
 - WebSocket：`ws://127.0.0.1:8080/d102`
 - HTTP：`http://127.0.0.1:8080/d1/{分类路径}`
@@ -100,9 +100,9 @@ PowerShell 使用 `$env:DI_PHONE`、`$env:DI_PASSWORD` 和 `$env:DI_CARD_KEY` �
 ### D201 / D202
 
 ```bash
-python websocket/d201_l2_csv.py --help
-python websocket/d201_batch_buysell.py --help
-python websocket/d202_snapshot_auction.py --help
+python examples/cli/d201_l2_csv.py --help
+python examples/cli/d201_batch_buysell.py --help
+python examples/cli/d202_snapshot_auction.py --help
 ```
 
 采集结果请放到 `output/` 或通过 `--output` 指定到仓库外部；仓库已经忽略
@@ -114,12 +114,12 @@ Windows、macOS 和 Linux 均可尝试运行 Tkinter 工作台。桌面环境不
 管理脚本和 `--dry-run` 示例即可完成服务器自测。
 
 ```bash
-python http/d1_gui.py
-python http/d4_gui.py
-python http/d6_gui.py
-python websocket/d101_gui.py
-python websocket/d201_gui.py
-python websocket/d202_gui.py
+python examples/gui/d1_gui.py
+python examples/gui/d4_gui.py
+python examples/gui/d6_gui.py
+python examples/gui/d101_gui.py
+python examples/gui/d201_gui.py
+python examples/gui/d202_gui.py
 ```
 
 ## AI 使用约定
@@ -127,8 +127,8 @@ python websocket/d202_gui.py
 让 AI 操作本仓库时，建议先执行：
 
 ```bash
-python admin/ai_control.py --help
-python websocket/d102_quickstart.py --mode ws --dry-run
+python examples/automation/ai_control.py --help
+python examples/cli/d102_quickstart.py --mode ws --dry-run
 ```
 
 然后再根据实际状态执行 `status`、`login`、`start` 或 `smoke`。AI 不应猜测账号

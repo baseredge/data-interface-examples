@@ -3,10 +3,10 @@
 提交前请在仓库根目录运行：
 
 ```bash
-python -m compileall -q admin http websocket tests
-python admin/ai_control.py --help
-python websocket/d102_quickstart.py --mode ws --dry-run
-python websocket/d102_quickstart.py --mode http --dry-run
+python -m compileall -q examples tests
+python examples/automation/ai_control.py --help
+python examples/cli/d102_quickstart.py --mode ws --dry-run
+python examples/cli/d102_quickstart.py --mode http --dry-run
 ```
 
 提交内容应保持用户侧范围：只连接本机 `data_interface` 服务，不加入账号、密码、

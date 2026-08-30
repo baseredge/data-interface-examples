@@ -7,7 +7,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PYTHON_DIRS = (ROOT / "admin", ROOT / "http", ROOT / "websocket")
+PYTHON_DIRS = (
+    ROOT / "examples" / "automation",
+    ROOT / "examples" / "gui",
+    ROOT / "examples" / "cli",
+)
 
 
 class PublicExamplesTest(unittest.TestCase):
